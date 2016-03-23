@@ -11,7 +11,7 @@ a:hover, a:active { color: #c00; }
 
 /* HEADER */
 header { padding: 0 0.5em; color: #C90B0B; }
-header img { border-radius: 40px; float: left; }
+header img { border-radius: 40px; float: left; width: 70px; height: auto;}
 .author { font-size:1.5em; font-weight: bold; padding-left: 4em;}
 .author__title { font-size: 0.8em; font-weight: normal;}
 
@@ -24,7 +24,7 @@ header img { border-radius: 40px; float: left; }
 /* PORTFOLIO */
 .content { padding: 1em; }
 .content__item { list-style-type: none; font-size: 1.1em;}
-.content__item img { float:left; padding-right: 1em; }
+.content__item img { float:left; padding-right: 1em; width: 100px; height: 60px;}
 .content__item p { font-size: 0.9em; font-style: italic; }
 
 /* FOOTER */
@@ -32,7 +32,7 @@ footer {
   padding: 0 0.5em;
   border-top: 1px solid #ccc;
 }
-#crp-stats { float: right; font-style: italic;}
+#crp-stats { float: right; font-style: italic; will-change:content;transform: translateZ(0);}
 
 /* Smartphones (portrait) */
 @media only screen and (max-width: 480px) {
@@ -48,6 +48,5 @@ footer {
   tr, img { page-break-inside: avoid; }
   img { max-width: 100% !important; }
   @page { margin: 0.5cm; }
-  p, h2, h3 { orphans: 3; widows: 3; }
-  h2, h3{ page-break-after: avoid; }
+  p { orphans: 3; widows: 3; }
 }

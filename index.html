@@ -11,6 +11,8 @@
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -46,7 +48,7 @@
                 </li>
 
                 <li class="content__item">
-                    <img style="width: 100px;" src="views/images/pizzeria-compact.jpg">
+                    <img src="views/images/pizzeria-compact.jpg">
                     <a href="views/pizza.html">Cam's Pizzeria</a>
                     <p>Who wants a performant pizza?</p>
                 </li>
@@ -57,20 +59,8 @@
             <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
         </footer>
     </div>
-    <script>
-        function logCRP() {
-            var t = window.performance.timing,
-                dcl = t.domContentLoadedEventStart - t.domLoading,
-                complete = t.domComplete - t.domLoading;
-            var stats = document.getElementById("crp-stats");
-            stats.textContent = 'DCL: ' + dcl + 'ms, onload: ' + complete + 'ms';
-        }
-        window.addEventListener("load", function (event) {
-            logCRP();
-        });
-    </script>
-    <script src="http://www.google-analytics.com/analytics.js"></script>
-    <script>
+
+             <script>
         (function (w, g) {
             w['GoogleAnalyticsObject'] = g;
             w[g] = w[g] || function () {
@@ -81,6 +71,17 @@
         ga('create', 'UA-XXXX-Y');
         ga('send', 'pageview');
     </script>
+    <script>
+        function logCRP() {
+            var t = window.performance.timing,
+                dcl = t.domContentLoadedEventStart - t.domLoading,
+                complete = t.domComplete - t.domLoading;
+            var stats = document.getElementById("crp-stats");
+            stats.textContent = 'DCL: ' + dcl + 'ms, onload: ' + complete + 'ms';
+        }
+        window.onload = function() {logCRP();}
+    </script>
+            <script  src="http://www.google-analytics.com/analytics.js"></script>
 </body>
 
 </html>
