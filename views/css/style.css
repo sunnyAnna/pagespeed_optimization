@@ -50,3 +50,11 @@ form {
 .img-responsive {
    width: 100%;
 }
+
+#movingPizzas1 {
+    will-change: content;
+}
+
+.mover {
+    will-change: left;
+}
