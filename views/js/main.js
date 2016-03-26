@@ -124,44 +124,15 @@ pizzaIngredients.crusts = [
   "Stuffed Crust"
 ];
 
-// Name generator pulled from http://saturdaykid.com/usernames/generator.html
-// Capitalizes first letter of each word
-String.prototype.capitalize = function () {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
-var adjectives = ["dark", "color", "whimsical", "shiny", "noise", "apocalyptic", "insulting", "praise", "scientific"]; // types of adjectives for pizza titles
-var nouns = ["animals", "everyday", "fantasy", "gross", "horror", "jewelry", "places", "scifi"]; // types of nouns for pizza titles
-
-
-// These functions return a string of a random ingredient from each respective category of ingredients.
-var selectRandomMeat = function () {
-    var randomMeat = pizzaIngredients.meats[Math.floor((Math.random() * pizzaIngredients.meats.length))];
-    return randomMeat;
-};
-
-var selectRandomNonMeat = function () {
-    var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaIngredients.nonMeats.length))];
-    return randomNonMeat;
-};
-
-var selectRandomCheese = function () {
-    var randomCheese = pizzaIngredients.cheeses[Math.floor((Math.random() * pizzaIngredients.cheeses.length))];
-    return randomCheese;
-};
-
-var selectRandomSauce = function () {
-    var randomSauce = pizzaIngredients.sauces[Math.floor((Math.random() * pizzaIngredients.sauces.length))];
-    return randomSauce;
-};
-
-var selectRandomCrust = function () {
-    var randomCrust = pizzaIngredients.crusts[Math.floor((Math.random() * pizzaIngredients.crusts.length))];
-    return randomCrust;
-};
-
+// Returns a string with random pizza ingredients nested inside <li> tags
 var ingredientItemizer = function (string) {
     return "<li>" + string + "</li>";
+};
+
+// Return a string of a random ingredient from each respective category of ingredients.
+function selectRandom(food) {
+    var random = pizzaIngredients[food][Math.floor((Math.random() * pizzaIngredients[food].length))];
+    return random;
 };
 
 // Returns a string with random pizza ingredients nested inside <li> tags
@@ -173,31 +144,28 @@ var makeRandomPizza = function () {
     var numberOfCheeses = Math.floor((Math.random() * 2));
 
     for (var i = 0; i < numberOfMeats; i++) {
-        pizza = pizza + ingredientItemizer(selectRandomMeat());
+        pizza = pizza + ingredientItemizer(selectRandom('meats'));
     }
 
     for (var j = 0; j < numberOfNonMeats; j++) {
-        pizza = pizza + ingredientItemizer(selectRandomNonMeat());
+        pizza = pizza + ingredientItemizer(selectRandom('nonMeats'));
     }
 
     for (var k = 0; k < numberOfCheeses; k++) {
-        pizza = pizza + ingredientItemizer(selectRandomCheese());
+        pizza = pizza + ingredientItemizer(selectRandom('cheeses'));
     }
 
-    pizza = pizza + ingredientItemizer(selectRandomSauce());
-    pizza = pizza + ingredientItemizer(selectRandomCrust());
+    pizza = pizza + ingredientItemizer(selectRandom('sauces'));
+    pizza = pizza + ingredientItemizer(selectRandom('crusts'));
 
     return pizza;
 };
+
+
 var myWorker = new Worker('js/worker.js');
+
 // returns a DOM element for each pizza
 function PizzaElementGenerator(i, name) {
-    /*var pizzaContainer, // contains pizza title, image and list of ingredients
-        pizzaImageContainer, // contains the pizza image
-        pizzaImage, // the pizza image itself
-        pizzaDescriptionContainer, // contains the pizza title and list of ingredients
-        pizzaName, // the pizza name itself
-        ul; // the list of ingredients*/
     this.pizzaDescriptionContainer = document.createElement("div");
     this.pizzaName = document.createElement("h4");
     this.pizzaContainer = document.createElement("div");
@@ -217,10 +185,9 @@ function PizzaElementGenerator(i, name) {
     this.pizzaDescriptionContainer.appendChild(this.pizzaName);
     this.pizzaImageContainer.appendChild(this.pizzaImage);
     this.pizzaContainer.appendChild(this.pizzaImageContainer);
-
     this.pizzaDescriptionContainer.appendChild(this.ul);
     this.pizzaContainer.appendChild(this.pizzaDescriptionContainer);
-
+    //return pizzasDiv.appendChild(this.pizzaContainer);
     return this.pizzaContainer;
 };
 
@@ -297,20 +264,24 @@ window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
 var pizzasDiv = document.getElementById("randomPizzas");
-for (var i = 2; i < 100; i++) {
-    myWorker.postMessage({
-        adjectives: adjectives,
-        nouns: nouns
-    });
-    myWorker.onmessage = function (e) {
-        a = e.data.a;
-        b=e.data.b;
-        var name = "The " + a.capitalize() + " " + b.capitalize();
-        var newPizza = new PizzaElementGenerator(i, name);
-        pizzasDiv.appendChild(newPizza);
-    }
 
+
+var listOfPizzas = [];
+myWorker.postMessage({
+    data: {}
+});
+myWorker.onmessage = function (e) {
+    var names = e.data;
+    for (var i = 2, j = names.length + 2; i < j; i++) {
+        var name = names[i];
+        var newPizza = new PizzaElementGenerator(i, name);
+        listOfPizzas.push(newPizza);
+    }
+    for (var i = 0, j = listOfPizzas.length; i < j; i++) {
+        pizzasDiv.appendChild(listOfPizzas[i]);
+    }
 }
+
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
 window.performance.mark("mark_end_generating");
