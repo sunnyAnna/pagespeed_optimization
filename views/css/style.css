@@ -13,6 +13,19 @@
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -box-sizing: border-box;
+}
+
+body {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    background: black;
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 img {
     vertical-align: middle;
 }
@@ -30,6 +43,7 @@ img {
     padding-left: 15px;
     padding-right: 15px;
     max-width: 1170px;
+    background-color: rgba(240, 60, 60, 0.8);
 }
 
 .row {
@@ -66,17 +80,6 @@ img {
 
 /* custom css */
 
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -box-sizing: border-box;
-}
-
-body {
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    background: black;
-}
-
 input {
     background: grey;
     font-size: 18px;
@@ -102,6 +105,8 @@ form {
 }
 
 .randomPizzaContainer {
+    width: 33.33%;
+    height: 325px;
     float: left;
     display: flex;
     text-transform: capitalize;
@@ -113,12 +118,11 @@ form {
     clear: both;
 }
 
-.container {
-    background-color: rgba(240, 60, 60, 0.8);
-}
-
-.img-responsive {
-    width: 100%;
+.randomPizzaContainer .img-responsive {
+    width: 100px;
+    background: url(../images/pizza.png) no-repeat center;
+    height: 100px;
+    background-size: contain;
 }
 /*
 #randomPizzas {
@@ -126,12 +130,8 @@ form {
 }*/
 
 #movingPizzas1 {
-    will-change: content;
-}
-/*
-.mover {
     will-change: left;
-}*/
+}
 
 @media (min-width: 992px) {
     .col-md-4,
