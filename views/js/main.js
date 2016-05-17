@@ -288,7 +288,7 @@ function selectRandom(food) {
 };
 
 // Returns a random number
-function randomMath(x){
+function randomMath(x) {
     return Math.floor((Math.random() * x));
 }
 
@@ -370,9 +370,16 @@ function PizzaElementGenerator(i) {
     menu.push(pizzaContainer);
 };
 
+
+var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
+
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function (size) {
     window.performance.mark("mark_start_resize"); // User Timing API function
+
+var z = document.querySelectorAll(".randomPizzaContainer .img-responsive");
+    var oldWidth = z[0].offsetWidth;
+    var oldSize = oldWidth / windowWidth;
 
     // Changes the value for the size of the pizza above the slider
     function changeSliderLabel(size) {
@@ -394,12 +401,8 @@ var resizePizzas = function (size) {
     changeSliderLabel(size);
 
     // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-    function determineDx(elem, size) {
-        var oldWidth = elem.offsetWidth;
-        var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
-        var oldSize = oldWidth / windowWidth;
+    function determineDx(size) {
 
-        // Optional TODO: change to 3 sizes? no more xl?
         // Changes the slider value to a percent width
         function sizeSwitcher(size) {
             switch (size) {
@@ -420,12 +423,12 @@ var resizePizzas = function (size) {
         return dx;
     }
 
+
     // Iterates through pizza elements on the page and changes their widths
     function changePizzaSizes(size) {
-        var z = document.querySelectorAll(".randomPizzaContainer");
+        var dx = determineDx(size);
+        var newwidth = (oldWidth + dx) + 'px';
         for (var i = 0, j = z.length; i < j; i++) {
-            var dx = determineDx(z[i], size);
-            var newwidth = (z[i].offsetWidth + dx) + 'px';
             z[i].style.width = newwidth;
         }
     }
@@ -534,8 +537,7 @@ function generatePizzaImages() {
     for (var i = 0, j = bkgr.length; i < j; i++) {
         pizzasBkgr.appendChild(bkgr[i]);
     }
-    for(var i=0,j=menu.length;i<j;i++){
+    for (var i = 0, j = menu.length; i < j; i++) {
         pizzasDiv.appendChild(menu[i]);
     }
 }
-
