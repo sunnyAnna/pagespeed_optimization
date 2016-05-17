@@ -501,8 +501,8 @@ window.addEventListener('scroll', function () {
 
 
 
-function Element(i, pos, cols, s) {
-    var phase = Math.sin((pos / 1250) + (i % 5));
+function Element(i, cols, s) {
+    var phase = Math.sin(i % 5);
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza-small.png";
@@ -514,11 +514,10 @@ function Element(i, pos, cols, s) {
 
 // Creates pizzas for the background
 function createElements() {
-    var pos = 0;
     var cols = 8;
     var s = 256;
     for (var i = 0; i < 50; i++) {
-        var elem = new Element(i, pos, cols, s);
+        var elem = new Element(i, cols, s);
     }
 }
 
