@@ -505,7 +505,7 @@ function Element(i, cols, s) {
     var phase = Math.sin(i % 5);
     var elem = document.createElement('img');
     elem.className = 'mover';
-    elem.src = "images/pizza-small.png";
+    elem.src = "images/pizza-sm.png";
     elem.left = (i % cols) * s;
     elem.style.left = elem.left + 100 * phase + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
