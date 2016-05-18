@@ -371,15 +371,21 @@ function PizzaElementGenerator(i) {
 };
 
 
-var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
+//var z = document.querySelectorAll(".randomPizzaContainer .img-responsive");
+//var originalWidth = z[0].offsetWidth;
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function (size) {
     window.performance.mark("mark_start_resize"); // User Timing API function
-
-var z = document.querySelectorAll(".randomPizzaContainer .img-responsive");
+    var z = document.querySelectorAll(".randomPizzaContainer .img-responsive");
+    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
     var oldWidth = z[0].offsetWidth;
     var oldSize = oldWidth / windowWidth;
+    var newImg;
+    var smImg = 'url(../views/images/pizza-sm.png) no-repeat center';
+    var medImg = 'url(../views/images/pizza-med.png) no-repeat center';
+    var lgImg = 'url(../views/images/pizza-lg.png) no-repeat center';
+
 
     // Changes the value for the size of the pizza above the slider
     function changeSliderLabel(size) {
@@ -400,6 +406,7 @@ var z = document.querySelectorAll(".randomPizzaContainer .img-responsive");
 
     changeSliderLabel(size);
 
+
     // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
     function determineDx(size) {
 
@@ -407,10 +414,13 @@ var z = document.querySelectorAll(".randomPizzaContainer .img-responsive");
         function sizeSwitcher(size) {
             switch (size) {
             case "1":
+                newImg = smImg;
                 return 0.25;
             case "2":
-                return 0.3333;
+                newImg = medImg;
+                return 0.333;
             case "3":
+                newImg = lgImg;
                 return 0.5;
             default:
                 console.log("bug in sizeSwitcher");
@@ -430,6 +440,7 @@ var z = document.querySelectorAll(".randomPizzaContainer .img-responsive");
         var newwidth = (oldWidth + dx) + 'px';
         for (var i = 0, j = z.length; i < j; i++) {
             z[i].style.width = newwidth;
+            z[i].style.background = newImg;
         }
     }
 

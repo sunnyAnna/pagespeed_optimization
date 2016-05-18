@@ -61,6 +61,14 @@ img {
     padding-right: 15px;
 }
 
+.col-md-push-3 {
+    left: 25%;
+}
+
+.col-md-push-2 {
+    left: 16.66666667%;
+}
+
 .clearfix:before,
 .clearfix:after,
 .container:before,
@@ -89,7 +97,7 @@ form {
     display: inline-block;
 }
 
-.centered {
+h3 {
     text-align: center;
 }
 
@@ -128,6 +136,8 @@ form {
     height: 100px;
     background-size: contain;
 }
+
+
 /*
 #randomPizzas {
     will-change: content;
