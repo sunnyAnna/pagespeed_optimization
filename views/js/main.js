@@ -489,16 +489,27 @@ function logAverageFrame(times) { // times is the array of User Timing measureme
 // Code for sliding background pizzas pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
+function math(b, i) {
+    var x = 100 * Math.sin(b + (i % 5));
+    return x;
+}
+
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
     frame++;
     window.performance.mark("mark_start_frame");
 
-    var items = document.querySelectorAll('.mover');
-    var position = document.body.scrollTop;
-    for (var i = 0; i < items.length; i++) {
-        var phase = Math.sin((position / 1250) + (i % 5));
-        items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    var arr = [];
+    var scrollPosition = window.pageYOffset;
+    var b = scrollPosition / 1250;
+    for (var i = 0; i < c; i++) {
+        var phase = math(b, i);
+        var left = items[i].left;
+        var k = phase + left;
+        arr.push(k);
+    }
+    for (var i = 0; i < c; i++) {
+        items[i].style.left = arr[i] + 'px';
     }
 
     // User Timing API
@@ -508,11 +519,13 @@ function updatePositions() {
         var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
         logAverageFrame(timesToUpdatePosition);
     }
+
 }
+
 
 // Runs updatePositions on scroll
 window.addEventListener('scroll', function () {
-    requestAnimationFrame(updatePositions);
+    window.requestAnimationFrame(updatePositions);
 });
 
 
@@ -545,12 +558,17 @@ window.addEventListener('DOMContentLoaded', generatePizzaImages());
 // Generates images of menu pizzas and sliding background pizzas
 function generatePizzaImages() {
     window.removeEventListener('DOMContentLoaded', generatePizzaImages);
-    var pizzasBkgr = document.getElementById("movingPizzas1");
+    var pizzasBkgr = document.getElementById("movingPizzas");
     var pizzasDiv = document.getElementById("randomPizzas");
-    for (var i = 0, j = bkgr.length; i < j; i++) { // appends background pizzas to the DOM
+    var c = bkgr.length;
+    var d = menu.length;
+    for (var i = 0; i < c; i++) { // appends background pizzas to the DOM
         pizzasBkgr.appendChild(bkgr[i]);
     }
-    for (var i = 0, j = menu.length; i < j; i++) {
+    for (var i = 0; i < d; i++) {
         pizzasDiv.appendChild(menu[i]); // appends menu pizzas to the DOM
     }
 }
+
+var items = document.querySelectorAll('.mover');
+var c = items.length;
