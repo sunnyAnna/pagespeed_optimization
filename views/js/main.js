@@ -264,9 +264,12 @@ var nouns = ["animals", "everyday", "fantasy", "gross", "horror", "jewelry", "pl
 var k = adjectives.length;
 var l = nouns.length;
 
+var browserWidth = window.innerWidth;
+var browserHeigth = window.innerHeight;
 var bkgr = []; // array with background pizzas
 var pies = []; // array with lists of pizza ingredients
 var menu = []; // array with menu pizzas
+var items, n;
 
 // Name generator pulled from http://saturdaykid.com/usernames/generator.html
 // Capitalizes first letter of each word
@@ -490,27 +493,32 @@ function logAverageFrame(times) { // times is the array of User Timing measureme
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 function math(b, i) {
-    var x = 100 * Math.sin(b + (i % 5));
+    var x = 100 * Math.sin(b + (i % n));
     return x;
 }
+
+var scrollPosition, e, change = true;
+var arr = [];
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
     frame++;
     window.performance.mark("mark_start_frame");
 
-    var arr = [];
-    var scrollPosition = window.pageYOffset;
+    scrollPosition = window.pageYOffset;
     var b = scrollPosition / 1250;
-    for (var i = 0; i < c; i++) {
+    for (var i = 0; i < e; i++) {
         var phase = math(b, i);
         var left = items[i].left;
         var k = phase + left;
-        arr.push(k);
+        items[i].style.left = k + 'px';
+        //arr.push(k);
     }
-    for (var i = 0; i < c; i++) {
+    /*
+    for (var i = 0; i < e; i++) {
         items[i].style.left = arr[i] + 'px';
     }
+    arr = [];*/
 
     // User Timing API
     window.performance.mark("mark_end_frame");
@@ -519,19 +527,24 @@ function updatePositions() {
         var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
         logAverageFrame(timesToUpdatePosition);
     }
-
+    change = true;
 }
 
 
 // Runs updatePositions on scroll
 window.addEventListener('scroll', function () {
-    window.requestAnimationFrame(updatePositions);
+    //scrollPosition = window.pageYOffset;
+    if (change === true) {
+        //scrollPosition = window.pageYOffset;
+        change = false;
+        window.requestAnimationFrame(updatePositions);
+    }
 });
 
 
 // Background pizza element constructor
 function Element(i, cols, s) {
-    var phase = Math.sin(i % 5);
+    var phase = Math.sin(i % n);
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza-sm.png";
@@ -543,9 +556,13 @@ function Element(i, cols, s) {
 
 // Creates pizzas for the background
 function createElements() {
-    var cols = 8;
     var s = 256;
-    for (var i = 0; i < 50; i++) {
+    var browserHeight = (0.9 < browserHeigth / browserWidth < 1.1) ? browserWidth - 200 : browserHeight;
+    var cols = Math.floor(browserWidth / 200);
+    n = cols + 1;
+    var rows = Math.ceil(browserHeigth / s);
+    var numOfPizzas = cols * rows;
+    for (var i = 0; i < numOfPizzas; i++) {
         var elem = new Element(i, cols, s);
     }
 }
@@ -553,7 +570,7 @@ function createElements() {
 createElements();
 
 // Runs generatePizzaImages upon DOM load
-window.addEventListener('DOMContentLoaded', generatePizzaImages());
+window.addEventListener('DOMContentLoaded', generatePizzaImages);
 
 // Generates images of menu pizzas and sliding background pizzas
 function generatePizzaImages() {
@@ -568,7 +585,6 @@ function generatePizzaImages() {
     for (var i = 0; i < d; i++) {
         pizzasDiv.appendChild(menu[i]); // appends menu pizzas to the DOM
     }
+    items = document.querySelectorAll('.mover');
+    e = items.length;
 }
-
-var items = document.querySelectorAll('.mover');
-var c = items.length;
