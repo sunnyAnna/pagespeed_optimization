@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
     <div class="container">
         <div id="header" class="row">
             <div class="col-md-6">
@@ -34,8 +35,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="movingPizzas1" class="col-md-6">
             </div>
         </div>
         <div id="callToAction" class="row">
@@ -107,15 +106,15 @@
                     <div class="col-md-12">
                         <em>What size pizza would you like? Use the slider below to change pizza sizes.</em>
                     </div>
-                    <div id="pizzaSize" class="col-md-6">Small</div>
+                    <div id="pizzaSize" class="col-md-6">Medium</div>
                     <div class="col-md-12">
-                        <input id="sizeSlider" type="range" min="1" max="3" value="1" step="1" onchange="resizePizzas(this.value)">
+                        <input id="sizeSlider" type="range" min="1" max="3" value="2" step="1" onchange="resizePizzas(this.value)">
                     </div>
                 </div>
                 <div id="randomPizzas" class="row">
                     <div id="pizza0" class="randomPizzaContainer">
                         <div class="col-md-6">
-                            <img class="img-responsive">
+                            <div class="img-responsive"></div>
                         </div>
                         <div class="col-md-6">
                             <h5>The Udacity Special</h5>
@@ -132,7 +131,7 @@
                     </div>
                     <div id="pizza1" class="randomPizzaContainer">
                         <div class="col-md-6">
-                            <img class="img-responsive">
+                            <div class="img-responsive"></div>
                         </div>
                         <div class="col-md-6">
                             <h5>The Cameron Special</h5>
@@ -147,8 +146,11 @@
             </div>
         </div>
         <div id="footer" class="col-md-12">Thanks for visiting! &copy; 2014 Udacity</div>
+        <img src="images/pizza-sm.png" width="0" height="0">
+        <img src="images/pizza-med.png" width="0" height="0">
     </div>
-            <script defer type="text/javascript" src="js/main.js"></script>
-
+<div id="movingPizzas" class="row"></div>
+    <script defer type="text/javascript" src="js/main.js"></script>
 </body>
+
 </html>
