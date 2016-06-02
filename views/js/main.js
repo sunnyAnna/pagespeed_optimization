@@ -497,28 +497,26 @@ function math(b, i) {
     return x;
 }
 
-var scrollPosition, e, change = true;
-var arr = [];
+var scrollPosition, e, busy = false,
+    arr = [];
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
     frame++;
     window.performance.mark("mark_start_frame");
 
+    arr = [];
     scrollPosition = window.pageYOffset;
     var b = scrollPosition / 1250;
     for (var i = 0; i < e; i++) {
         var phase = math(b, i);
         var left = items[i].left;
         var k = phase + left;
-        items[i].style.left = k + 'px';
-        //arr.push(k);
+        arr.push(k);
     }
-    /*
-    for (var i = 0; i < e; i++) {
-        items[i].style.left = arr[i] + 'px';
+    if (busy === false) {
+        window.requestAnimationFrame(apply);
     }
-    arr = [];*/
 
     // User Timing API
     window.performance.mark("mark_end_frame");
@@ -527,19 +525,19 @@ function updatePositions() {
         var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
         logAverageFrame(timesToUpdatePosition);
     }
-    change = true;
+}
+
+function apply() {
+    busy = true;
+    for (var i = 0; i < e; i++) {
+        items[i].style.transform = 'translate(' + arr[i] + 'px)';
+    }
+    busy = false;
 }
 
 
 // Runs updatePositions on scroll
-window.addEventListener('scroll', function () {
-    //scrollPosition = window.pageYOffset;
-    if (change === true) {
-        //scrollPosition = window.pageYOffset;
-        change = false;
-        window.requestAnimationFrame(updatePositions);
-    }
-});
+window.addEventListener('scroll', updatePositions);
 
 
 // Background pizza element constructor
