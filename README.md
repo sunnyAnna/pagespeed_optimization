@@ -1,18 +1,18 @@
-# Pagespeed Optimized index.html
-
-A spin on the classic Frogger Game. Built with Javascript and HTML5 canvas.
-
-### INSTRUCTIONS
-
-The game is being hosted on [this page](http://sunnyanna.github.io/frogger_game/).
+# Pagespeed Optimized index.html and pizza.html
 ```
-The game will start once you click on your choice of player.
+Pagespeed optimization of
+```
+### INSTRUCTIONS
+```
+The project is being hosted on [this page](http://sunnyanna.github.io/frontend-nanodegree-mobile-portfolio/).
 
-You can move the player by using the directional keys.
+To check the pagespeed, go to: [this page](https://developers.google.com/speed/pagespeed/insights/).
 ```
 ##### GOAL
 ```
-You win the game if the player reaches the key.
+1. index.html achieves a PageSpeed score of at least 90 for Mobile and Desktop.
+2. pizza.html renders with a consistent frame-rate at 60fps when scrolling.
+3. Time to resize pizzas is less than 5 ms using the pizza size slider on the pizza.html page.
 ```
 ##### RULES
 ```
