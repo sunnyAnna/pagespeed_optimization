@@ -108,7 +108,7 @@ h3 {
     position: fixed;
     height: 100px;
     width: 73.333px;
-    will-change: left;
+    will-change: transform;
 }
 
 .randomPizzaContainer {
