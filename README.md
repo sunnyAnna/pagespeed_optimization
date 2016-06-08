@@ -5,7 +5,9 @@ Pagespeed optimization of index.html and pizza.html
 ### INSTRUCTIONS
 
 The project is being hosted on [this page](http://sunnyanna.github.io/frontend-nanodegree-mobile-portfolio).
+
 To check the pagespeed, go to [Google PageSpeed Insights.](https://developers.google.com/speed/pagespeed/insights).
+
 To check the frame-rate and time to resize pizzas, open [pizza.html](http://sunnyanna.github.io/frontend-nanodegree-mobile-portfolio/views/pizza.html) in Chrome and use dev tools.
 
 ### GOALS
@@ -17,4 +19,5 @@ To check the frame-rate and time to resize pizzas, open [pizza.html](http://sunn
 ### CHANGES MADE
 
 Changes included streamlining and manipulation of Javascript code for increased processing efficiency and reduction of the size and amount of resources that need downloading.
+
 Grunt plugins were used for image resizing and file minimizing, as well as for pagespeed check on a local server.
