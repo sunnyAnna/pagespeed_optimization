@@ -1,0 +1,29 @@
+{
+  "name": "mobile-perf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunnyAnna/frontend-nanodegree-mobile-portfolio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunnyAnna/frontend-nanodegree-mobile-portfolio/issues"
+  },
+  "homepage": "https://github.com/sunnyAnna/frontend-nanodegree-mobile-portfolio#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-cssnano": "^2.0.1",
+    "grunt-minify-html": "^2.0.0",
+    "grunt-pagespeed": "^2.0.0",
+    "grunt-postcss": "^0.8.0",
+    "grunt-responsive-images": "^0.1.7",
+    "load-grunt-tasks": "^3.4.1"
+  }
+}

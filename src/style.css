@@ -1,0 +1,148 @@
+    body {
+        background: #fff;
+        margin: 0;
+        font: 14px Verdana, sans-serif;
+        line-height: 18px;
+        color: #333
+    }
+
+    ul {
+        margin: 1em 0;
+        padding: 0
+    }
+
+    img {
+        max-width: 100%
+    }
+
+    .container,
+    footer,
+    header {
+        max-width: 45em;
+        margin: 0 auto
+    }
+
+    a {
+        color: #12c
+    }
+
+    a:visited {
+        color: #61c
+    }
+
+    a:hover {
+        color: #c00
+    }
+
+    header {
+        color: #c90b0b
+    }
+
+    header img {
+        border-radius: 50%;
+        float: left;
+        margin-left: 15px;
+        width: 70px;
+        height: auto
+    }
+
+    .author {
+        font-size: 1.5em;
+        font-weight: 700;
+        padding-left: 4.8em
+    }
+
+    .author__title {
+        font-size: .8em;
+        font-weight: 400
+    }
+
+    .hero {
+        background-color: #f8f8f8;
+        font-size: 1.2em;
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc
+    }
+
+    .hero,
+    .content {
+        padding: 2em
+    }
+
+    .content__item {
+        list-style-type: none;
+        margin-top: 20px;
+        clear: left
+    }
+
+    .content__item img {
+        float: left;
+        padding-right: 1em;
+        padding-bottom: 2em;
+        width: 100px;
+        height: 60px
+    }
+
+    .content__item p {
+        font-size: .9em;
+        font-style: italic
+    }
+
+    footer {
+        padding: 0 .5em;
+        border-top: 1px solid #ccc
+    }
+
+    #crp-stats {
+        float: right;
+        font-style: italic;
+        will-change: content;
+        transform: translateZ(0)
+    }
+
+    @media only screen and (min-width:600px) {
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 700;
+            src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+        }
+        body {
+            font: 14px 'Open Sans', Verdana, sans-serif;
+        }
+    }
+
+    @media print {
+        @page {
+            margin: .5cm
+        }
+        * {
+            background: transparent!important;
+            color: #000!important
+        }
+        a {
+            text-decoration: underline
+        }
+        a[href]:after {
+            content: " (" attr(href) ")"
+        }
+        img {
+            page-break-inside: avoid
+        }
+        h2,
+        h3,
+        p {
+            orphans: 3;
+            widows: 3
+        }
+        h2,
+        h3 {
+            page-break-after: avoid
+        }
+    }
