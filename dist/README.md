@@ -6,7 +6,7 @@ Pagespeed optimization of index.html and pizza.html
 
 The project is being hosted on [this page](http://sunnyanna.github.io/frontend-nanodegree-mobile-portfolio).
 
-To check the pagespeed, go to [Google PageSpeed Insights.](https://developers.google.com/speed/pagespeed/insights).
+To check the pagespeed, go to [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights).
 
 To check the frame-rate and time to resize pizzas, open [pizza.html](http://sunnyanna.github.io/frontend-nanodegree-mobile-portfolio/views/pizza.html) in Chrome and use dev tools.
 
