@@ -73,9 +73,10 @@ module.exports = function (grunt) {
             }
         }
     });
-    grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-responsive-images');
     grunt.loadNpmTasks('grunt-pagespeed');
+    grunt.loadNpmTasks('grunt-cssnano');
+    grunt.loadNpmTasks('grunt-minifyHtml');
     grunt.registerTask('default', ['pagespeed']);
 }

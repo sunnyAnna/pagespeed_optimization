@@ -22,7 +22,6 @@
     "grunt-cssnano": "^2.0.1",
     "grunt-minify-html": "^2.0.0",
     "grunt-pagespeed": "^2.0.0",
-    "grunt-postcss": "^0.8.0",
     "grunt-responsive-images": "^0.1.7",
     "load-grunt-tasks": "^3.4.1"
   }

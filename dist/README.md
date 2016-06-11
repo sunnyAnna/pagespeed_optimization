@@ -18,6 +18,26 @@ To check the frame-rate and time to resize pizzas, open [pizza.html](http://sunn
 
 ### CHANGES MADE
 
-Changes included streamlining and manipulation of Javascript code for increased processing efficiency and reduction of the size and amount of resources that need downloading.
+Changes included re-sequencing and manipulation of Javascript code for increased processing efficiency, and reduction of the size and amount of resources that needed to be downloaded.
 
-Grunt plugins were used for image resizing and file minimizing, as well as for pagespeed check on a local server.
+### GRUNT
+
+Grunt plugins were used for image resizing and minimizing files (JS files have not been minimized to preserve readability), as well as for pagespeed check on a local server.
+
+Instructions for adding node_modules and running Grunt for this project:
+
+Download the plugins:
+    _npm install load-grunt-tasks --save-dev_ (required to run the plugins)
+    _brew install ImageMagick_ (required for grunt-responsive-images)
+    _npm install grunt-responsive-images --save-dev_
+    _npm install grunt-cssnano --save-dev_
+    _npm install grunt-minify-html --save-dev_
+    _npm install grunt-contrib-uglify --save-dev_
+    _npm install grunt-pagespeed --save-dev_
+
+Run the plugins:
+    Resize/compress the images: _grunt responsive_images_
+    Compress html file: _grunt minifyHtml_
+    Compress css file: _grunt cssnano_
+    Compress Javascript file: _grunt uglify_
+    Check pagespeed of the html file: _grunt pagespeed_
