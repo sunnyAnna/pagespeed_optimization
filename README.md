@@ -4,7 +4,7 @@ Pagespeed optimization of index.html and pizza.html
 
 ### INSTRUCTIONS
 
-The project is being hosted on [this page](http://sunnyanna.github.io/pagespeed_optimization/).
+The project is being hosted on [this page](http://sunnyanna.github.io/pagespeed_optimization/dist/).
 
 To check the pagespeed, go to [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights).
 
